@@ -23,7 +23,7 @@ echo -e "\n${COLOR_CYAN}* UPDATE THE AUTOLOADER${COLOR_NC}"
 php composer.phar dump-autoload
 
 # Copy config to local and run editor
-echo -e "\n\n${COLOR_CYAN}* COPY CONFIG AND EDIT IT${COLOR_NC}"
+echo -e "\n\n${COLOR_CYAN}* COPY CONFIG TO EDIT IT${COLOR_NC}"
 cp config/config.php config/config-local.php
 
 if ! mcedit config/config-local.php; then
