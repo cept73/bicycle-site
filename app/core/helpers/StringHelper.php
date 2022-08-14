@@ -16,6 +16,6 @@ class StringHelper
 
     public static function isEnglishLettersText(string $string): bool
     {
-        return preg_match('/[^A-Za-z]+/', $string);
+        return preg_match('/^[A-Za-z]+$/', $string);
     }
 }
