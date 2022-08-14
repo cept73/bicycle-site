@@ -4,6 +4,7 @@ namespace app\core;
 
 class WebRequest
 {
+    public const    CODE_ACCESS_DENIED = 403;
     public const    CODE_NOT_FOUND = 404;
     public const    CODE_FATAL     = 500;
 

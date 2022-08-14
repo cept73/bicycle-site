@@ -42,6 +42,16 @@ class CodeCatcher extends BaseRoute
             ->setHeaders(['HTTP/1.1 404 Not Found']);
     }
 
+    public function onAccessDenied(): self
+    {
+        /** @var self $rule */
+        $rule = self::newRule(WebRequest::METHOD_GET);
+
+        return $rule
+            ->forPageCode(WebRequest::CODE_ACCESS_DENIED)
+            ->setHeaders(['HTTP/1.1 403 Forbidden']);
+    }
+
     public function addToRouter(RouteRules $router): void
     {
         $onPageCode = $this->getForPageCode();

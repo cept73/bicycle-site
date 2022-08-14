@@ -35,7 +35,7 @@
 
                 use app\core\helpers\StudentsSeeder;
 
-                foreach (array_slice(StudentsSeeder::getTestUsersData(), 0,5) as $row) : ?>
+                foreach (array_slice(StudentsSeeder::getTestUsersData(), 0,10) as $row) : ?>
                     <tr>
                         <td>
                             <?php if ($row['active']) : ?><i class="dashboard_result__table__status_on bi bi-check-circle-fill"></i>

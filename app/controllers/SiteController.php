@@ -13,6 +13,7 @@ use app\core\helpers\StudentsSeeder;
 use app\core\WebRequest;
 use app\model\LoginForm\LoginForm;
 use app\model\LoginForm\LoginFormPopulator;
+use app\model\User\User;
 use app\model\User\UserService;
 use JsonException;
 
@@ -23,7 +24,7 @@ class SiteController extends BaseController
      */
     public function actionHomePage(): string
     {
-        if ($this->isUserLoggedIn()) {
+        if ($this->isUserLoggedIn() || $this->autoLoginByCookieIfAny()) {
             return $this->goDashboard();
         }
 
@@ -56,8 +57,8 @@ class SiteController extends BaseController
                 } else {
                     App::cookie()->setCurrentUser(null);
                 }
-            } else if ($user = App::cookie()->getCurrentUser()) {
-                App::loginAs($user);
+            } else {
+                $this->autoLoginByCookieIfAny();
             }
         }
 
@@ -113,6 +114,7 @@ class SiteController extends BaseController
     public function actionDeleteAuth(): string
     {
         App::userStorage()->setCurrentUser(null);
+        App::cookie()->setCurrentUser(null);
 
         return $this->responseJsonOk();
     }
@@ -125,11 +127,18 @@ class SiteController extends BaseController
         return $this->viewHtml('not-found');
     }
 
-    public function actionFileNotFound(BaseRoute $route): string
+    /** @noinspection PhpUnusedParameterInspection */
+    public function actionFileNotFound(WebRequest $request, BaseRoute $route): string
     {
         return ResponseHelper::showHeaders($route->getHeaders());
     }
-    
+
+    /** @noinspection PhpUnusedParameterInspection */
+    public function actionAccessDenied(WebRequest $request, BaseRoute $route): string
+    {
+        return ResponseHelper::showHeaders($route->getHeaders());
+    }
+
     private function goHome(): string
     {
         return $this->redirect('/');
@@ -138,5 +147,14 @@ class SiteController extends BaseController
     private function goDashboard(): string
     {
         return $this->redirect('/dashboard');
+    }
+
+    private function autoLoginByCookieIfAny(): ?User
+    {
+        if ($user = App::cookie()->getCurrentUser()) {
+            App::loginAs($user);
+        }
+
+        return $user;
     }
 }

@@ -28,7 +28,8 @@ try {
         ->add((new Route)       ->onPost('/auth')        ->call(SiteController::class, 'auth'))
         ->add((new Route)       ->onDelete('/auth')      ->call(SiteController::class, 'deleteAuth'))
         ->add((new CodeCatcher) ->onPageNotFound('/assets')->call(SiteController::class, 'fileNotFound'))
-        ->add((new CodeCatcher) ->onPageNotFound()           ->call(SiteController::class, 'pageNotFound'));
+        ->add((new CodeCatcher) ->onPageNotFound()           ->call(SiteController::class, 'pageNotFound'))
+        ->add((new CodeCatcher) ->onAccessDenied()           ->call(SiteController::class, 'accessDenied'));
 
     $routeRules->executeFor($webRequest);
 }
