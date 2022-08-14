@@ -44,7 +44,8 @@ abstract class BaseController
     {
         if (file_exists($templateFileName)) {
             extract($data, EXTR_SKIP);
-            return require($templateFileName);
+            require($templateFileName);
+            return '';
         }
 
         $templateFileNameShort = FileHelper::getFileNameWithoutPath($templateFileName);
