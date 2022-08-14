@@ -1,0 +1,131 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: #f6f6f6;
+  --bs-link-color: black;
+}
+
+/** Usual pages */
+.main-page {
+  max-width: 600px;
+  padding: 15px;
+  text-align: left;
+}
+.dashboard {
+  padding: 15px;
+  text-align: left;
+}
+
+.dashboard_loading {
+  text-align: center;
+}
+
+/** Brand background */
+.main-page__login-form .btn-primary {
+  background-color: #ee8a48;
+  border-color: #ee8a48;
+}
+
+/** Logo on small screen */
+.main-page__logo-mini img {
+  max-width: 256px !important;
+}
+
+/** Custom icons for lock and user */
+.kc {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  float: left;
+}
+.kc-lock {
+  background-image: url('/assets/images/password.svg');
+  padding-left: 1px;
+  padding-right: 1px;
+}
+.kc-user {
+  background-image: url('/assets/images/user.svg');
+}
+
+.dashboard .dashboard__title {
+  text-align: center
+}
+
+.dashboard_result__table {
+  border-top: 20px;
+  border-top-color: #0b5ed7;
+}
+
+.dashboard_result__table tbody {
+  --bs-table-striped-bg: white;
+  --bs-table-accent-bg: #ebebeb;
+}
+
+.dashboard_result__table thead tr {
+  background: #ee8a48;
+}
+
+.dashboard_result__table tr {
+  border-style: hidden;
+}
+
+.dashboard_result__table .pagination {
+  --bs-pagination-bg: unset;
+  --bs-pagination-border-width: unset;
+  --bs-pagination-color: unset;
+  --bs-pagination-hover-bg: unset;
+  --bs-pagination-focus-bg: unset;
+  --bs-pagination-focus-box-shadow: unset;
+  --bs-pagination-active-bg: unset;
+  --bs-pagination-active-color: unset;
+  --bs-pagination-active-border-color: #ee8a48;
+}
+
+.dashboard_result__table__status_on, .dashboard_result__table__status_off {
+  font-size: 20px;
+  margin-right: 30px;
+  float: right;
+  color: #00883c;
+}
+.dashboard_result__table__status_on {
+}
+.dashboard_result__table__status_off {
+}
+
+.dashboard__footer {
+  background: #ebebeb
+}
+
+.dashboard__footer-logout-link {
+  text-decoration: none;
+}
+
+.dashboard_result__table__login, .dashboard_result__table__user_name, .dashboard_result__table__title, .dashboard_result__table__group {
+  margin: 0;
+}
+
+.dashboard_result__table__login {
+  font-size: 20px;
+}
+
+.dashboard_result__table__user_name {
+  color: #9c9c9c
+}
+
+.dashboard_result__table__title {
+  font-size: 20px
+}
+
+.dashboard_result__table__group {
+}

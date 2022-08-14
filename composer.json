@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        },
+        "classmap": ["app/core"]
+    },
+    "require": {
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-openssl": "*"
+    }
+}
