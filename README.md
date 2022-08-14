@@ -18,11 +18,11 @@ CREATE TABLE `api_users` (
   `user_name` VARCHAR(45) NOT NULL,
   `password` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`uuid`),
-  UNIQUE INDEX `user__user_name__UNIQUE` (`user_name` ASC) VISIBLE
+  UNIQUE INDEX `user__user_name__UNIQUE` (`user_name`)
 );
 
 /** Username: user, password: 12345 */
-INSERT INTO `users` VALUES ('TESTTESTTESTTESTTESTTESTTESTTEST', 'user', '$2y$10$jOzys0.q5fRQIlC4EADRwu0DXt9rz7iuSoMtZCO/.HlYONNJgtawu');
+INSERT INTO `api_users` VALUES ('TESTTESTTESTTESTTESTTESTTESTTEST', 'user', '$2y$10$jOzys0.q5fRQIlC4EADRwu0DXt9rz7iuSoMtZCO/.HlYONNJgtawu');
 ```
 
 ---
