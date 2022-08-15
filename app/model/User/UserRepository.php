@@ -23,6 +23,7 @@ class UserRepository
 
         $user = new User();
         UserPopulator::populate($user, $userInfo);
+
         return $user;
     }
 

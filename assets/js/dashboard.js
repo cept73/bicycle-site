@@ -136,8 +136,6 @@ class Dashboard
     }
 
     populateObjectsFromAjaxData(data) {
-        console.log('POPULATE', data);
-
         this.items      = data.items;
         this.page       = data.page.index;
         this.lastPage   = data.page.count;
@@ -153,7 +151,6 @@ class Dashboard
 
     __getBlockHtml(blockName, data = {}) {
         let html = this.__blocks[blockName].outerHTML;
-        console.log(blockName, this.__blocks[blockName])
 
         Object.entries(data).forEach(function (item) {
             let replaceFrom = '{' + item[0] + '}',
@@ -176,8 +173,6 @@ class Dashboard
             that.__blocks[blockId] = item;
             $(item).remove();
         })
-
-        console.log(this.__blocks);
     }
 
     init() {

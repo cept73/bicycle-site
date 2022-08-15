@@ -33,8 +33,5 @@ class UserCookie implements UserStoreInterface
 
         setcookie(self::KEY_USER_NAME,  $userName,  $expiryDate);
         setcookie(self::KEY_TOKEN,      $userToken, $expiryDate);
-
-        /* $_COOKIE[self::KEY_USER_NAME]   = $user->userName ?? null;
-        $_COOKIE[self::KEY_TOKEN]       = $user ? UserService::getHashedUserToken($user) : null;*/
     }
 }

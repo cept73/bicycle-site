@@ -7,7 +7,6 @@ use app\model\UserSession\UserSession;
 return [
     Environment::KEY_DB             => new DbConnection('mysql:host=localhost;dbname=city', 'root', 'password'),
     Environment::KEY_ITEMS_ON_PAGE  => 5,
-    Environment::KEY_USE_ITEMS_SEED => false,
     Environment::KEY_VIEW_PATH      => 'app/views',
     Environment::KEY_USER_STORE     => new UserSession(),
     Environment::KEY_SALT           => 'ygUuy',

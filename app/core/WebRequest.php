@@ -7,6 +7,7 @@ class WebRequest
     public const    CODE_ACCESS_DENIED = 403;
     public const    CODE_NOT_FOUND = 404;
     public const    CODE_FATAL     = 500;
+    public const    CODE_SUCCESS   = 200;
 
     public const    METHOD_GET     = 'GET';
     public const    METHOD_POST    = 'POST';
@@ -14,7 +15,7 @@ class WebRequest
 
     private string  $url            = '';
     private array   $params         = [];
-    private int     $code           = 200;
+    private int     $code           = self::CODE_SUCCESS;
     private string  $method         = 'GET';
 
     public function getUrl(): string
