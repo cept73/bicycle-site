@@ -6,7 +6,7 @@
 
 <h3>1.2. Init project with init.sh script</h3>
 
-This command will also clone config.php file to config-local.php and trying to open editor which you need to save with proper credentials:
+This command also clones the config.php file to config-local.php and tries to open the editor from which you must save the correct settings:
 
 `./init.sh`
 
