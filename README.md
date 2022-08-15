@@ -58,4 +58,4 @@ You need to allow: `ext-json`, `ext-pdo` and `ext-openssl`
 
 <h3>2.2. If an error occurs after a change to the code, try:</h2>
 
-`composer.phar dump-autoload`
+`php composer.phar dump-autoload`
