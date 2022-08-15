@@ -2,9 +2,11 @@
 
 namespace app\core\base;
 
+use app\core\App;
 use app\core\Environment;
-use app\core\exception\WrongConfigurationException;
+use app\core\helpers\DataTableHelper;
 use app\core\helpers\StringHelper;
+use Exception;
 
 abstract class BaseDataTable implements DataTableInterface
 {
@@ -14,6 +16,8 @@ abstract class BaseDataTable implements DataTableInterface
      * @var string|null
      */
     public static ?string $table = null;
+
+    public string $uuid;
 
     protected static function getConnection(): BaseConnectionInterface
     {
@@ -48,5 +52,47 @@ abstract class BaseDataTable implements DataTableInterface
         return true;
     }
 
-    abstract public function save();
+    /**
+     * @throws Exception
+     */
+    public static function generateUuid(): string
+    {
+        do {
+            $uuid = bin2hex(random_bytes(16));
+        } while (self::getByUuid($uuid));
+
+        return $uuid;
+    }
+
+    /** @noinspection SqlResolve */
+    /**
+     * @throws Exception
+     */
+    public function save(): void
+    {
+        $table = self::getTable();
+        $props = array_keys(get_class_vars(self::class));
+
+        $isExist = $this->uuid && self::getByUuid($this->uuid);
+        if ($isExist) {
+            $propertiesWithEqualSql = DataTableHelper::getPropertiesWithEqual($props);
+            $sql = "UPDATE $table SET $propertiesWithEqualSql WHERE uuid=:uuid";
+        } else {
+            $propertiesList = DataTableHelper::getPropertiesString($props);
+            $propertiesDottedList = DataTableHelper::getPropertiesDottedString($props);
+            $this->uuid = self::generateUuid();
+            $sql = "INSERT INTO $table ($propertiesList) VALUES ($propertiesDottedList)";
+        }
+
+        App::db()->execute($sql, DataTableHelper::getPropertiesToValues($props, $this));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function insert(): void
+    {
+        $this->uuid = null;
+        $this->save();
+    }
 }

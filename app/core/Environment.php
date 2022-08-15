@@ -7,12 +7,13 @@ use app\core\helpers\FileHelper;
 
 class Environment
 {
-    public const KEY_VIEW_PATH  = 'views';
-    public const KEY_DB         = 'db';
-    public const KEY_SALT       = 'salt';
-    public const KEY_USER_STORE = 'user-storage';
-    public const KEY_ITEMS2PAGE = 5;
-    public const KEY_DEBUG      = 'debug';
+    public const KEY_VIEW_PATH      = 'views';
+    public const KEY_DB             = 'db';
+    public const KEY_SALT           = 'salt';
+    public const KEY_USER_STORE     = 'user-storage';
+    public const KEY_ITEMS_ON_PAGE  = 'page-size';
+    public const KEY_USE_ITEMS_SEED = 'use-test-data';
+    public const KEY_DEBUG          = 'debug';
 
     private static array $config;
 

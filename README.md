@@ -23,6 +23,29 @@ CREATE TABLE `api_users` (
 
 /** Username: user, password: 12345 */
 INSERT INTO `api_users` VALUES ('TESTTESTTESTTESTTESTTESTTESTTEST', 'user', '$2y$10$jOzys0.q5fRQIlC4EADRwu0DXt9rz7iuSoMtZCO/.HlYONNJgtawu');
+
+CREATE TABLE `city`.`students` (
+  `uuid` VARCHAR(32) NOT NULL,
+  `user_name` VARCHAR(45) NOT NULL,
+  `login` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(45) NULL,
+  `group_name` VARCHAR(45) NULL,
+  `active` TINYINT NULL,
+  PRIMARY KEY (`uuid`)
+);
+
+INSERT INTO students VALUES ('ef6919c11760059c543ce778722c7597', 'Bernardo Santini', 'kctest00202', '...', 'Default group', true);
+INSERT INTO students VALUES ('5489df6283eae6226a03539ea5f171e8', 'George Quebedo', 'kctest00213', '...', 'Default group', true);
+INSERT INTO students VALUES ('493a50675ce639d59b0f3df1e60c56ba', 'Rob Shneider', 'kctest00208', '...', 'Default group', true);
+INSERT INTO students VALUES ('c5ba3db1039a6638c723434e1de91544', 'Terry Cruz', 'kctest00220', '...', 'Default group', false);
+INSERT INTO students VALUES ('24e3612b9885dc93b180b242444d29d4', 'David Smith', 'kctest00209', '...', 'Default group', true);
+INSERT INTO students VALUES ('038f98be44628b5aec9a04c2ba885fe3', 'Bernardo Santini', 'kctest00202', '...', 'Default group', true);
+INSERT INTO students VALUES ('8de7370d9fe799ea204497522989ac36', 'George Quebedo', 'kctest00213', '...', 'Default group', true);
+INSERT INTO students VALUES ('6fe14c21dd22a23e71efb8f00150f0fb', 'Rob Shneider', 'kctest00208', '...', 'Default group', true);
+INSERT INTO students VALUES ('3948ce479a8b58fc84168a4b0b1e977c', 'Terry Cruz', 'kctest00220', '...', 'Default group', false);
+INSERT INTO students VALUES ('49e1492e48c9b387004eee5604ae90b3', 'David Smith', 'kctest00209', '...', 'Default group', true);
+
+
 ```
 
 ---

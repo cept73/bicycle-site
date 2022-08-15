@@ -8,11 +8,12 @@ use app\core\base\BaseRoute;
 use app\core\Environment;
 use app\core\exception\AccessDeniedException;
 use app\core\exception\NotFoundException;
+use app\core\helpers\ArrayHelper;
 use app\core\helpers\ResponseHelper;
-use app\core\helpers\StudentsSeeder;
 use app\core\WebRequest;
 use app\model\LoginForm\LoginForm;
 use app\model\LoginForm\LoginFormPopulator;
+use app\model\Student\StudentRepository;
 use app\model\User\User;
 use app\model\User\UserService;
 use JsonException;
@@ -78,7 +79,7 @@ class SiteController extends BaseController
             return $this->goHome();
         }
 
-        return $this->view('dashboard');
+        return $this->viewHtml('dashboard');
     }
 
     /**
@@ -91,13 +92,18 @@ class SiteController extends BaseController
             throw new AccessDeniedException();
         }
 
-        $pageSize       = Environment::getParam(Environment::KEY_ITEMS2PAGE, 5);
-        $params         = $request->getParams();
-        $page           = (int) ($params['page'] ?? 1);
+        $pageSize           = Environment::getParam(Environment::KEY_ITEMS_ON_PAGE, 5);
+        $params             = $request->getParams();
+        $page               = (int) ($params['page'] ?? 1);
 
-        $studentsList   = StudentsSeeder::getTestUsersData();
-        $studentsCount  = count($studentsList);
-        $pagesCount     = ceil($studentsCount / $pageSize);
+        $studentRepository  = new StudentRepository;
+        $studentsList       = $studentRepository->getPage($page, $pageSize);
+        $studentsCount      = $studentRepository->getCount();
+        $pagesCount         = ArrayHelper::getPagesCount($studentsCount, $pageSize);
+
+        if ($page < 1 || $page > $pagesCount) {
+            $this->responseJsonError(['message' => 'Incorrect page number']);
+        }
 
         return $this->responseJsonOk([
             'items' => $studentsList,

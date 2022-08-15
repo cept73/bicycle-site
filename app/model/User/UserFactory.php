@@ -16,10 +16,9 @@ class UserFactory
     {
         $user = new User();
         UserPopulator::populate($user, $loginForm);
-        $user->uuid = UserService::generateUuid();
 
         if ($user->validate()) {
-            $user->save();
+            $user->insert();
             return $user;
         }
 

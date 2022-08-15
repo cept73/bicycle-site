@@ -5,33 +5,20 @@ namespace app\model\User;
 use app\core\App;
 use app\core\Environment;
 use app\model\LoginForm\LoginForm;
-use Exception;
 
 class UserService
 {
-    /**
-     * @throws Exception
-     */
-    public static function generateUuid(): string
-    {
-        do {
-            $uuid = random_bytes(16);
-        } while (User::getByUuid($uuid));
-
-        return $uuid;
-    }
-
     private static function getSaltedPassword(string $password): string
     {
         $salt = Environment::getParam(Environment::KEY_SALT);
         return $salt . $password;
     }
 
-    public static function getHashPassword(string $password): string
+    /* public static function getHashPassword(string $password): string
     {
         $saltedPassword = self::getSaltedPassword($password);
         return password_hash($saltedPassword, PASSWORD_DEFAULT);
-    }
+    }*/
 
     public static function checkPassword(string $password, string $correctHash): bool
     {

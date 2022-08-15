@@ -10,6 +10,9 @@ use JsonException;
 
 abstract class BaseController
 {
+    public const STATUS_OK      = 'ok';
+    public const STATUS_ERROR   = 'error';
+
     public function isUserLoggedIn(): bool
     {
         return (bool) App::currentUser();
@@ -54,6 +57,7 @@ abstract class BaseController
 
     /**
      * @throws NotFoundException
+     * @noinspection PhpUnused
      */
     public function view($templateName, $data = []): string
     {
@@ -74,14 +78,30 @@ abstract class BaseController
     /**
      * @throws JsonException
      */
-    public function responseJsonOk($data = []): string
+    public function responseJsonWithStatus($status, $data = []): string
     {
-        $response = ['status' => 'ok'];
+        $response = ['status' => $status];
         if (!empty($data)) {
             $response['result'] = $data;
         }
 
         return $this->responseJson($response);
+    }
+
+    /**
+     * @throws JsonException
+     */
+    public function responseJsonOk($data = []): string
+    {
+        return $this->responseJsonWithStatus(self::STATUS_OK, $data);
+    }
+
+    /**
+     * @throws JsonException
+     */
+    public function responseJsonError($data = []): string
+    {
+        return $this->responseJsonWithStatus(self::STATUS_ERROR, $data);
     }
 
     public function redirect($url): string

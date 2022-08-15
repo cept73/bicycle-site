@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core\helpers;
+namespace app\model\Student;
 
 class StudentsSeeder
 {
