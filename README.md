@@ -24,7 +24,7 @@ CREATE TABLE `api_users` (
 /** Username: user, password: 12345 */
 INSERT INTO `api_users` VALUES ('TESTTESTTESTTESTTESTTESTTESTTEST', 'user', '$2y$10$jOzys0.q5fRQIlC4EADRwu0DXt9rz7iuSoMtZCO/.HlYONNJgtawu');
 
-CREATE TABLE `city`.`students` (
+CREATE TABLE `students` (
   `uuid` VARCHAR(32) NOT NULL,
   `user_name` VARCHAR(45) NOT NULL,
   `login` VARCHAR(45) NOT NULL,
