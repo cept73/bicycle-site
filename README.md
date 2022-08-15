@@ -6,11 +6,11 @@
 
 <h3>1.2. Init project with init.sh script</h3>
 
-This command also clones the config.php file to config-local.php and tries to open the editor from which you must save the correct settings:
+This command also clones the config.php file to config-local.php and tries to open the editor to set correct settings:
 
 `./init.sh`
 
-<h3>1.3. Execute SQL in your MySQL Manager to create tables and seed test data:</h2>
+<h3>1.3. Execute SQL in your MySQL Manager to create tables and add test data:</h2>
 
 ```
 CREATE TABLE `api_users` (
@@ -54,8 +54,8 @@ INSERT INTO students VALUES ('49e1492e48c9b387004eee5604ae90b3', 'David Smith', 
 
 <h3>2.1. Check if the following libraries are allowed in PHP configuration:</h3>
 
-You need to be allowed: `ext-json`, `ext-pdo` and `ext-openssl`
+You need to allow: `ext-json`, `ext-pdo` and `ext-openssl`
 
-<h3>2.2. If errors start after code changes, run:</h2>
+<h3>2.2. If an error occurs after a change to the code, try:</h2>
 
 `composer.phar dump-autoload`
