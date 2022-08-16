@@ -57,7 +57,7 @@ class DbConnection implements BaseConnectionInterface
      */
     public function getAll($sql, $params = []): array
     {
-        return $this->getPreparedQuery($sql, $params)->fetchAll();
+        return $this->getPreparedQuery($sql, $params)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /** @noinspection ForgottenDebugOutputInspection */
