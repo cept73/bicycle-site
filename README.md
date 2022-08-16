@@ -18,7 +18,7 @@ CREATE TABLE `api_users` (
   `user_name` VARCHAR(45) NOT NULL,
   `password` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`uuid`),
-  UNIQUE INDEX `user__user_name__UNIQUE` (`user_name`)
+  UNIQUE INDEX `api_users__user_name__UNIQUE` (`user_name`)
 );
 
 /** Username: user, password: 12345 */
