@@ -29,7 +29,7 @@ class Dashboard
         page = this.getCorrectPage(page);
 
         this.loading = true;
-        that.showLayer(that.LAYER_LOADING);
+        // that.showLayer(that.LAYER_LOADING);
 
         $.get('/users', {'page': page})
             .done(async function (data) {
