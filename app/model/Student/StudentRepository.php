@@ -6,7 +6,7 @@ use app\core\App;
 
 class StudentRepository
 {
-    public function getPage($page, $pageSize): array
+    public function getPage(int $page, int $pageSize): array
     {
         $usersTable = Student::getTable();
         $firstIndex = $pageSize * ($page - 1);
