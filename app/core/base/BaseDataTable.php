@@ -41,7 +41,7 @@ abstract class BaseDataTable implements DataTableInterface
     public static function getByUuid($uuid)
     {
         $table  = self::getTable();
-        $sql    = "SELECT * FROM $table WHERE uuid = :uuid";
+        $sql    = "SELECT * FROM `$table` WHERE uuid = :uuid";
         $params = ['uuid' => $uuid];
 
         return self::getConnection()->getOne($sql, $params);
@@ -73,15 +73,15 @@ abstract class BaseDataTable implements DataTableInterface
         $table = self::getTable();
         $props = array_keys(get_class_vars(self::class));
 
-        $isExist = $this->uuid && self::getByUuid($this->uuid);
-        if ($isExist) {
+        $isExists = $this->uuid && self::getByUuid($this->uuid);
+        if ($isExists) {
             $propertiesWithEqualSql = DataTableHelper::getPropertiesWithEqual($props);
-            $sql = "UPDATE $table SET $propertiesWithEqualSql WHERE uuid=:uuid";
+            $sql = "UPDATE `$table` SET $propertiesWithEqualSql WHERE uuid=:uuid";
         } else {
             $propertiesList = DataTableHelper::getPropertiesString($props);
             $propertiesDottedList = DataTableHelper::getPropertiesDottedString($props);
             $this->uuid = self::generateUuid();
-            $sql = "INSERT INTO $table ($propertiesList) VALUES ($propertiesDottedList)";
+            $sql = "INSERT INTO `$table` ($propertiesList) VALUES ($propertiesDottedList)";
         }
 
         App::db()->execute($sql, DataTableHelper::getPropertiesToValues($props, $this));

@@ -9,7 +9,7 @@ class UserRepository
     public function getUserInfoByLogin($userName)
     {
         $usersTable = User::getTable();
-        $userInfo   = App::db()->getOne("SELECT * FROM $usersTable WHERE user_name = :user_name", [':user_name' => $userName]);
+        $userInfo   = App::db()->getOne("SELECT * FROM `$usersTable` WHERE user_name = :user_name", [':user_name' => $userName]);
 
         return $userInfo;
     }
