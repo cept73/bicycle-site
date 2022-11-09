@@ -3,15 +3,12 @@
 namespace app\core;
 
 use app\core\base\BaseRoute;
-use app\core\base\ControllerTrait;
 
 /**
  * Rule for rote to page by URL
  */
 class Route extends BaseRoute
 {
-    use ControllerTrait;
-
     public function onGet($url): self
     {
         /** @var self $object */
@@ -36,11 +33,5 @@ class Route extends BaseRoute
     public function addToRouter(RouteRules $router): void
     {
         $router->addRoute($this);
-    }
-
-    public function isMatchRequest(WebRequest $request): bool
-    {
-        return $request->getUrl() === $this->getForUrl()
-            && $request->getMethod() === $this->getMethod();
     }
 }

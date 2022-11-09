@@ -3,24 +3,21 @@
 namespace app\core;
 
 use app\core\base\BaseRoute;
-use app\core\base\ControllerTrait;
 
 /**
  * Rule for rote to page if event
  */
 class CodeCatcher extends BaseRoute
 {
-    use ControllerTrait;
-
-    private ?string $forPageCode = null;
+    private ?string $pageCode = null;
 
     /**
      * @param int $pageCode
-     * @return $this
+     * @return self
      */
     private function forPageCode(int $pageCode): self
     {
-        $this->forPageCode = $pageCode;
+        $this->pageCode = $pageCode;
         return $this;
     }
 
@@ -29,7 +26,7 @@ class CodeCatcher extends BaseRoute
      */
     public function getForPageCode(): ?string
     {
-        return $this->forPageCode;
+        return $this->pageCode;
     }
 
     public function onPageNotFound($url = ''): self
@@ -56,10 +53,5 @@ class CodeCatcher extends BaseRoute
     {
         $onPageCode = $this->getForPageCode();
         $router->addCatcher($this, $onPageCode);
-    }
-
-    public function isMatchRequest(WebRequest $request): bool
-    {
-        return $request->getCode() === $this->getForPageCode();
     }
 }

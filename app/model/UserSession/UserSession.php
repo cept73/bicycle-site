@@ -9,6 +9,11 @@ class UserSession implements UserStoreInterface
 {
     public const KEY_USER = 'user';
 
+    public function __construct()
+    {
+        session_start();
+    }
+
     public function getCurrentUser(): ?User
     {
         return $_SESSION[self::KEY_USER] ?? null;

@@ -3,6 +3,7 @@
 namespace app\core;
 
 use app\core\base\BaseRoute;
+use app\core\base\RouteService;
 use app\core\exception\NotFoundException;
 use app\core\exception\WrongConfigurationException;
 use Exception;
@@ -77,8 +78,8 @@ class RouteRules
     public function executeFor(WebRequest $request): void
     {
         foreach ($this->getRoutes() as $route) {
-            if ($route->isMatchRequest($request)) {
-                echo $route->executeRequest($request);
+            if (RouteService::isRequestMatchRoute($request, $route)) {
+                echo $route->executeRequest($request, $route);
                 return;
             }
         }

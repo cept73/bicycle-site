@@ -4,7 +4,6 @@ namespace app\core;
 
 use app\core\base\WebRequestInterface;
 use app\core\helpers\RequestHelper;
-use app\core\helpers\StringHelper;
 
 /**
  * Adapter for WebRequest from real user request

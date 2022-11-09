@@ -1,15 +1,19 @@
-<?php /** @noinspection PhpUnused */
+<?php
+
+/** @noinspection PhpUnused */
 
 namespace app\controllers;
 
 use app\core\App;
 use app\core\base\BaseController;
 use app\core\base\BaseRoute;
+use app\core\base\RouteService;
 use app\core\Environment;
 use app\core\exception\AccessDeniedException;
 use app\core\exception\NotFoundException;
 use app\core\helpers\ArrayHelper;
 use app\core\helpers\ResponseHelper;
+use app\core\Route;
 use app\core\WebRequest;
 use app\model\LoginForm\LoginForm;
 use app\model\LoginForm\LoginFormPopulator;
@@ -86,14 +90,14 @@ class SiteController extends BaseController
      * @throws JsonException
      * @throws AccessDeniedException
      */
-    public function actionGetUsersList(WebRequest $request): string
+    public function actionGetStudentsList(WebRequest $request, Route $route): string
     {
         if (!$this->isUserLoggedIn()) {
             throw new AccessDeniedException();
         }
 
+        $params             = RouteService::getParamsForRequest($request, $route);
         $pageSize           = Environment::getParam(Environment::KEY_ITEMS_ON_PAGE, 5);
-        $params             = $request->getParams();
         $page               = (int) ($params['page'] ?? 1);
 
         $studentRepository  = new StudentRepository;
@@ -102,7 +106,7 @@ class SiteController extends BaseController
         $pagesCount         = ArrayHelper::getPagesCount($studentsCount, $pageSize);
 
         if ($page < 1 || $page > $pagesCount) {
-            $this->responseJsonError(['message' => 'Incorrect page number']);
+            return $this->responseJsonError(['message' => 'Incorrect page number']);
         }
 
         return $this->responseJsonOk([

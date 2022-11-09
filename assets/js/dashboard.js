@@ -1,7 +1,6 @@
 
 class Dashboard
 {
-    LAYER_LOADING   = 'dashboard__loading';
     LAYER_RESULT    = 'dashboard__result';
     LAYER_IS_EMPTY  = 'dashboard__empty_result';
     STATUS_OK       = 'ok';
@@ -29,9 +28,8 @@ class Dashboard
         page = this.getCorrectPage(page);
 
         this.loading = true;
-        // that.showLayer(that.LAYER_LOADING);
 
-        $.get('/users', {'page': page})
+        $.get('/students/page/' + page)
             .done(async function (data) {
                 that.loading = false;
                 that.clearTries();
@@ -45,6 +43,7 @@ class Dashboard
                     } else {
                         that.showLayer(that.LAYER_RESULT);
                     }
+
                     return that.STATUS_OK;
                 }
 

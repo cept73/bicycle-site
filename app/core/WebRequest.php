@@ -50,12 +50,6 @@ class WebRequest
         return $this;
     }
 
-    public function setCode(int $code): self
-    {
-        $this->code = $code;
-        return $this;
-    }
-
     public function setMethod(string $method): self
     {
         $this->method = $method;

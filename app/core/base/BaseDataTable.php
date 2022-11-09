@@ -86,13 +86,4 @@ abstract class BaseDataTable implements DataTableInterface
 
         App::db()->execute($sql, DataTableHelper::getPropertiesToValues($props, $this));
     }
-
-    /**
-     * @throws Exception
-     */
-    public function insert(): void
-    {
-        $this->uuid = null;
-        $this->save();
-    }
 }

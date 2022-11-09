@@ -16,7 +16,7 @@ class Environment
 
     private static array $config;
 
-    public static function loadConfig(array $config): void
+    public static function useConfig(array $config): void
     {
         self::$config = $config;
     }
@@ -27,13 +27,12 @@ class Environment
             FileHelper::includeOrSkip("$fileName-local.php")
                 ?: FileHelper::includeOrSkip("$fileName.php");
 
-        if (!empty($configurationParams)) {
-            self::loadConfig($configurationParams);
-            return;
+        if (empty($configurationParams)) {
+            /** @noinspection PhpUnhandledExceptionInspection */
+            throw new WrongConfigurationException('Config is not found');
         }
 
-        /** @noinspection PhpUnhandledExceptionInspection */
-        throw new WrongConfigurationException('Config is not found');
+        self::useConfig($configurationParams);
     }
 
     public static function getParam(string $param, $default = null)

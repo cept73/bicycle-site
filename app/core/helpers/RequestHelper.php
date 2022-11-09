@@ -11,16 +11,7 @@ class RequestHelper
 
     public static function getCurrentURLPath(): string
     {
-        $currentUrl = self::getCurrentURL();
-        if ($divider = strpos($currentUrl, '?')) {
-            $currentUrl = substr($currentUrl, 0, $divider);
-        }
-        return $currentUrl;
-    }
-
-    public static function getCurrentRequestMethod(): string
-    {
-        return $_SERVER['REQUEST_METHOD'];
+        return parse_url(self::getCurrentURL(), PHP_URL_PATH);
     }
 
     public static function getMethodNameByActionName(string $actionName): string
