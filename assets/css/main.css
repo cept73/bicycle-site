@@ -37,7 +37,10 @@ body {
   border-color: #ee8a48;
 }
 
-/** Logo on small screen */
+/** Logo */
+.main-page__logo {
+  text-align: center;
+}
 .main-page__logo-mini img {
   max-width: 256px !important;
 }
